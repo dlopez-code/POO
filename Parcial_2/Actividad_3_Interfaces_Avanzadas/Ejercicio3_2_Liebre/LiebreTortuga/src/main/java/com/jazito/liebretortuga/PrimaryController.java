@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
-public class PrimaryController {
+public class PrimaryController{
 
     @FXML
     private ProgressBar barraLiebre;
@@ -40,28 +40,28 @@ public class PrimaryController {
         terminados = 0;
 
         // HILO DE LA TORTUGA
-        Thread tortuga = new Thread(new Runnable() {
+        Thread tortuga = new Thread(new Runnable(){
 
             @Override
-            public void run() {
+            public void run(){
 
-                for (int i = 1; i <= 10; i++) {
+                for (int i = 1; i <= 10; i++){
 
-                    try {
+                    try{
                         Thread.sleep(1000);
-                    } catch (InterruptedException e) {
+                    }catch(InterruptedException e){
                         return;
                     }
 
                     final double progreso = i / 10.0;
 
-                    Platform.runLater(new Runnable() {
+                    Platform.runLater(new Runnable(){
                         @Override
-                        public void run() {
+                        public void run(){
 
                             barraTortuga.setProgress(progreso);
 
-                            if (progreso == 1.0) {
+                            if (progreso == 1.0){
                                 terminarCarrera("Tortuga");
                             }
                         }
@@ -71,51 +71,51 @@ public class PrimaryController {
         });
 
         // HILO DE LA LIEBRE
-        Thread liebre = new Thread(new Runnable() {
+        Thread liebre = new Thread(new Runnable(){
 
             @Override
-            public void run() {
+            public void run(){
 
-                for (int i = 1; i <= 10; i++) {
+                for (int i = 1; i <= 10; i++){
 
-                    try {
+                    try{
                         Thread.sleep(400);
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException e){
                         return;
                     }
 
                     final double progreso = i / 10.0;
 
-                    Platform.runLater(new Runnable() {
+                    Platform.runLater(new Runnable(){
                         @Override
                         public void run() {
 
                             barraLiebre.setProgress(progreso);
 
-                            if (progreso == 1.0) {
+                            if (progreso == 1.0){
                                 terminarCarrera("Liebre");
                             }
                         }
                     });
 
-                    if (i == 5) {
+                    if (i == 5){
 
-                        Platform.runLater(new Runnable() {
+                        Platform.runLater(new Runnable(){
                             @Override
-                            public void run() {
+                            public void run(){
                                 lblLiebre.setText(
                                         "La Liebre: ¡Se durmió!"
                                 );
                             }
                         });
 
-                        try {
+                        try{
                             Thread.sleep(7000);
-                        } catch (InterruptedException e) {
+                        } catch (InterruptedException e){
                             return;
                         }
 
-                        Platform.runLater(new Runnable() {
+                        Platform.runLater(new Runnable(){
                             @Override
                             public void run() {
                                 lblLiebre.setText(
@@ -131,21 +131,21 @@ public class PrimaryController {
         liebre.start();
     }
 
-    private void terminarCarrera(String ganador) {
+    private void terminarCarrera(String ganador){
 
-        if (!hayGanador) {
+        if (!hayGanador){
             hayGanador = true;
 
-            if (ganador.equals("Tortuga")) {
+            if (ganador.equals("Tortuga")){
                 lblTortuga.setText("La Tortuga: ¡Ganó!");
-            } else {
+            }else{
                 lblLiebre.setText("La Liebre: ¡Ganó!");
             }
         }
 
         terminados++;
 
-        if (terminados == 2) {
+        if(terminados == 2){
             btnIniciar.setDisable(false);
         }
     }
