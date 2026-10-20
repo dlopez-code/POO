@@ -127,10 +127,6 @@ public class PrimaryController {
                 }
             }
         });
-
-        tortuga.setDaemon(true);
-        liebre.setDaemon(true);
-
         tortuga.start();
         liebre.start();
     }
